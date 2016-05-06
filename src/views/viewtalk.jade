@@ -1,0 +1,82 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+include ../../node_modules/jade-bootstrap/components/tables
+link(href='/css/watermark.css', rel='stylesheet')
+
+append body
+	block content
+		br
+		.row
+			.visible-md.visible-lg
+				.col-xs-6
+					a(href="/")
+						img(src='/img/cee.jpg') 
+				.col-xs-6.text-right
+					h1
+						|Research Speed Dating
+					form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+						input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword")
+			.visible-xs.visible-sm
+				.col-xs-12
+					a(href="/")
+						img(src='/img/cee.jpg') 
+				.col-xs-12
+					h1
+						|Research Speed Dating
+				.col-xs-12
+					form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+						input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword", style="width:100%")
+		br
+		br
+		br
+		.visible-md.visible-lg
+			.col-md-4.text-right
+				case talk.theme
+					when 'ecology'
+						img(src="/img/ecology.svg" width="100%")
+					when 'structures'
+						img(src="/img/structures.svg" width="100%")
+					when 'cities'
+						img(src="/img/cities.svg" width="100%")
+					when 'global'
+						img(src="/img/global.svg" width="100%")
+					when 'resources'
+						img(src="/img/resources.svg" width="100%")
+			.col-md-4.text-center
+				h1= talk.title
+				h2 #{talk.presenter}, #{talk.pi}
+				h2
+					a(href="mailto:#{talk.email}")= talk.email
+				h2
+					a(href="http://#{talk.website}")= talk.website
+				h2= talk.keyword
+			.col-md-4
+				div(style="width:100%;")
+					:verbatim
+						!{talk.qrcode}
+		.visible-xs.visible-sm
+			.col-xs-6.text-right
+				case talk.theme
+					when 'ecology'
+						img(src="/img/ecology.svg" width="100%")
+					when 'structures'
+						img(src="/img/structures.svg" width="100%")
+					when 'cities'
+						img(src="/img/cities.svg" width="100%")
+					when 'global'
+						img(src="/img/global.svg" width="100%")
+					when 'resources'
+						img(src="/img/resources.svg" width="100%")
+			.col-xs-6
+				div(style="width:100%;")
+					:verbatim
+						!{talk.qrcode}
+			.col-xs-12.text-center
+				h1= talk.title
+				h2 #{talk.presenter}, #{talk.pi}
+				h2
+					a(href="mailto:#{talk.email}")= talk.email
+				h2
+					a(href="http://#{talk.website}")= talk.website
+				h2= talk.keyword
+				

@@ -1,0 +1,72 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+append body
+	div.container
+		block content
+			br
+			.row
+				.visible-md.visible-lg
+					.col-xs-6
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-6.text-right
+						h1
+							|Research Speed Dating
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword")
+				.visible-xs.visible-sm
+					.col-xs-12
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-12
+						h1
+							|Research Speed Dating
+					.col-xs-12
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword", style="width:100%")
+		h1= title
+		form#formNewTalk(name="newtalk",method="post",action="/edit")
+			p
+				input#inputID(type="text", placeholder="ID", name="mongoid", value="#{talk._id}")
+			p
+				input#inputTitle(type="text", placeholder="title", name="title", value="#{talk.title}")
+			p
+				input#inputPresenter(type="text", placeholder="presenter", name="presenter", value="#{talk.presenter}")
+				input#inputPi(type="text", placeholder="PI", name="pi", value="#{talk.pi}")
+			p
+				input#inputEmail(type="text", placeholder="email", name="email", value="#{talk.email}")
+			p
+				input#inputWebsite(type="text", placeholder="website", name="website", value="#{talk.website}")
+			p
+				input#inputKeyword1(type="text", placeholder="keyword", name="keyword1", value="#{talk.keyword[0]}")
+				input#inputKeyword2(type="text", placeholder="keyword", name="keyword2", value="#{talk.keyword[1]}")
+				input#inputKeyword3(type="text", placeholder="keyword", name="keyword3", value="#{talk.keyword[2]}")
+				input#inputKeyword4(type="text", placeholder="keyword", name="keyword4", value="#{talk.keyword[3]}")
+			p
+				if talk.theme == "ecology"
+					input#inputEcology(type="checkbox", name="theme", value="ecology", checked) 
+				else
+					input#inputEcology(type="checkbox", name="theme", value="ecology")
+				|Ecology & Living Systems
+				if talk.theme == "resources"
+					input#inputResources(type="checkbox", name="theme", value="resources", checked)
+				else
+					input#inputResources(type="checkbox", name="theme", value="resources")
+				|Resources
+				if talk.theme == "structures"
+					input#inputStructures(type="checkbox", name="theme", value="structures", checked)
+				else
+					input#inputStructures(type="checkbox", name="theme", value="structures")
+				|Structures
+				if talk.theme == "cities"
+					input#inputCitites(type="checkbox", name="theme", value="cities", checked)
+				else
+					input#inputCitites(type="checkbox", name="theme", value="cities")
+				|Cities & Urban Systems
+				if talk.theme == "global"
+					input#inputGlobal(type="checkbox", name="theme", value="global", checked)
+				else
+					input#inputGlobal(type="checkbox", name="theme", value="global")
+				|Global Systems
+			p
+				button#btnSubmit(type="submit") submit

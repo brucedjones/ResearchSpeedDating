@@ -1,0 +1,123 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+include ../../node_modules/jade-bootstrap/components/tables
+
+append body
+	div.container
+		block content
+			br
+			.row
+				.visible-md.visible-lg
+					.col-xs-6
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-6.text-right
+						h1
+							|Research Speed Dating
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword")
+				.visible-xs.visible-sm
+					.col-xs-12
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-12
+						h1
+							|Research Speed Dating
+					.col-xs-12
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword", style="width:100%")
+			table.table()
+				thead
+					tr
+						th
+						th
+							|Title
+						th
+							|Presenter
+						th
+							|Website
+						th
+							|Keywords
+						th
+							|Actions
+				tbody
+					tr
+						each talk, i in alltalks.ecology
+							tr
+								if i==0
+									td.col-xs-1.text-center(rowspan="#{alltalks.ecology.length}")
+										img(class="img-responsive center-block", src='/img/ecology.svg') 
+										|Ecology & Living Systems
+								td= talk.title
+								td= talk.presenter
+								td
+									a(href="http://#{talk.website}", target="_blank")= talk.website
+								td= talk.keyword
+								td
+									a(href="/viewtalk?id=#{talk._id}", target="_blank") View
+									|, 
+									a(href="mailto:#{talk.email}") Email
+					tr
+						each talk, i in alltalks.resources
+							tr
+								if i==0
+									td.col-xs-1.text-center(rowspan="#{alltalks.resources.length}")
+										img(class="img-responsive center-block", src='/img/resources.svg') 
+										|Resources
+								td= talk.title
+								td= talk.presenter
+								td
+									a(href="http://#{talk.website}", target="_blank")= talk.website
+								td= talk.keyword
+								td
+									a(href="/viewtalk?id=#{talk._id}", target="_blank") View
+									|, 
+									a(href="mailto:#{talk.email}") Email
+					tr
+						each talk, i in alltalks.structures
+							tr
+								if i==0
+									td.col-xs-1.text-center(rowspan="#{alltalks.structures.length}")
+										img(class="img-responsive center-block", src='/img/structures.svg') 
+										|Structures
+								td= talk.title
+								td= talk.presenter
+								td
+									a(href="http://#{talk.website}", target="_blank")= talk.website
+								td= talk.keyword
+								td
+									a(href="/viewtalk?id=#{talk._id}", target="_blank") View
+									|, 
+									a(href="mailto:#{talk.email}") Email
+					tr
+						each talk, i in alltalks.cities
+							tr
+								if i==0
+									td.col-xs-1.text-center(rowspan="#{alltalks.cities.length}")
+										img(class="img-responsive center-block", src='/img/cities.svg') 
+										|Cities & Urban Systems
+								td= talk.title
+								td= talk.presenter
+								td
+									a(href="http://#{talk.website}", target="_blank")= talk.website
+								td= talk.keyword
+								td
+									a(href="/viewtalk?id=#{talk._id}", target="_blank") View
+									|, 
+									a(href="mailto:#{talk.email}") Email
+					tr
+						each talk, i in alltalks.globals
+							tr
+								if i==0
+									td.col-xs-1.text-center(rowspan="#{alltalks.globals.length}")
+										img(class="img-responsive center-block", src='/img/global.svg') 
+										|Global Systems
+								td= talk.title
+								td= talk.presenter
+								td
+									a(href="http://#{talk.website}", target="_blank")= talk.website
+								td= talk.keyword
+								td
+									a(href="/viewtalk?id=#{talk._id}", target="_blank") View
+									|, 
+									a(href="mailto:#{talk.email}") Email

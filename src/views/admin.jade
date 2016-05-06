@@ -1,0 +1,67 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+include ../../node_modules/jade-bootstrap/components/tables
+
+append body
+	div.container
+		block content
+			br
+			.row
+				.visible-md.visible-lg
+					.col-xs-6
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-6.text-right
+						h1
+							|Research Speed Dating
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword")
+						a(href="/newtalk") Add a talk
+				.visible-xs.visible-sm
+					.col-xs-12
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-12
+						h1
+							|Research Speed Dating
+					.col-xs-12
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword", style="width:100%")
+					a(href="/newtalk") Add a talk
+			table.table()
+				thead
+					tr
+						th
+							|Title
+						th
+							|Presenter
+						th
+							|PI
+						th
+							|Email
+						th
+							|Website
+						th
+							|Keywords
+						th
+							|Theme
+						th
+							|Actions
+				tbody
+					each talk, i in talklist
+						tr
+							td= talk.title
+							td= talk.presenter
+							td= talk.pi
+							td
+								a(href="mailto:#{talk.email}")= talk.email
+							td
+								a(href="http://#{talk.website}", target="_blank")= talk.website
+							td= talk.keyword
+							td= talk.theme
+							td
+								a(href="/viewtalk?id=#{talk._id}", target="_blank") View
+								|, 
+								a(href="/edittalk?id=#{talk._id}") Edit
+								|, 
+								a(href="/deletetalk?id=#{talk._id}") Delete

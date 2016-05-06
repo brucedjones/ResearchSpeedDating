@@ -1,0 +1,55 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+append body
+	div.container
+		block content
+			br
+			.row
+				.visible-md.visible-lg
+					.col-xs-6
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-6.text-right
+						h1
+							|Research Speed Dating
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword")
+				.visible-xs.visible-sm
+					.col-xs-12
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-12
+						h1
+							|Research Speed Dating
+					.col-xs-12
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword", style="width:100%")
+		h1= title
+		form#formNewTalk(name="newtalk",method="post",action="/addtalk")
+			p
+				input#inputTitle(type="text", placeholder="title", name="title")
+			p
+				input#inputPresenter(type="text", placeholder="presenter", name="presenter")
+				input#inputPi(type="text", placeholder="PI", name="pi")
+			p
+				input#inputEmail(type="text", placeholder="email", name="email")
+			p
+				input#inputWebsite(type="text", placeholder="website", name="website")
+			p
+				input#inputKeyword1(type="text", placeholder="keyword", name="keyword1")
+				input#inputKeyword2(type="text", placeholder="keyword", name="keyword2")
+				input#inputKeyword3(type="text", placeholder="keyword", name="keyword3")
+				input#inputKeyword4(type="text", placeholder="keyword", name="keyword4")
+			p
+				input#inputEcology(type="checkbox", name="theme", value="ecology") 
+				|Ecology & Living Systems
+				input#inputResources(type="checkbox", name="theme", value="resources")
+				|Resources
+				input#inputStructures(type="checkbox", name="theme", value="structures")
+				|Structures
+				input#inputCitites(type="checkbox", name="theme", value="cities")
+				|Cities & Urban Systems
+				input#inputGlobal(type="checkbox", name="theme", value="global")
+				|Global Systems
+			p
+				button#btnSubmit(type="submit") submit

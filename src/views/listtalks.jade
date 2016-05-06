@@ -1,0 +1,71 @@
+extends ../../node_modules/jade-bootstrap/_bootstrap
+
+include ../../node_modules/jade-bootstrap/components/tables
+
+append body
+	div.container(style="min-width:900px")
+		block content
+			br
+			.row
+				.visible-md.visible-lg
+					.col-xs-6
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-6.text-right
+						h1
+							|Research Speed Dating
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword")
+				.visible-xs.visible-sm
+					.col-xs-12
+						a(href="/")
+							img(src='/img/cee.jpg') 
+					.col-xs-12
+						h1
+							|Research Speed Dating
+					.col-xs-12
+						form#formkeywordsearch(name="keywordsearch",method="post",action="/keywordsearch")
+							input#inputkeyword(type="text", placeholder="Search for a topic", name="keyword", style="width:100%")
+			table.table()
+				thead
+					tr
+						th
+						th
+							|Title
+						th
+							|Presenter
+						th
+							|PI
+						th
+							|Email
+						th
+							|Website
+						th
+							|Keywords
+						th
+							|Actions
+				tbody
+					each talk, i in talklist
+						tr
+							td.col-xs-1
+								case talk.theme
+									when 'ecology'
+										img(src="/img/ecology.svg", width="100%", class="img-responsive center-block", title="Ecology & Living Systems")
+									when 'structures'
+										img(src="/img/structures.svg", width="100%", class="img-responsive center-block", title="Structures")
+									when 'cities'
+										img(src="/img/cities.svg", width="100%", class="img-responsive center-block", title="Cities & Urban Systems")
+									when 'global'
+										img(src="/img/global.svg", width="100%", class="img-responsive center-block", title="Global Systems")
+									when 'resources'
+										img(src="/img/resources.svg", width="100%", class="img-responsive center-block", title="Resources")
+							td= talk.title
+							td= talk.presenter
+							td= talk.pi
+							td
+								a(href="mailto:#{talk.email}")= talk.email
+							td
+								a(href="http://#{talk.website}", target="_blank")= talk.website
+							td= talk.keyword
+							td
+								a(href="/viewtalk?id=#{talk._id}", target="_blank") View
